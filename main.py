@@ -11,7 +11,7 @@ alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'
             '&', '*', '(', ')', ' ']
 
 
-def cipher(text, shift, cipher_direction):
+def cipher(text, shift, direction):
     """
     Encrypts or decrypts a message using a Caesar cipher.
 
@@ -27,7 +27,7 @@ def cipher(text, shift, cipher_direction):
     cipher_text = ""
 
     # If the cipher direction is 'decode', negate the shift value
-    if cipher_direction == "decode":
+    if direction == "decode":
         shift *= -1
 
     # Iterate through each character in the text
@@ -44,7 +44,7 @@ def cipher(text, shift, cipher_direction):
             cipher_text += char
 
     # Print the encoded or decoded message
-    print(f"Here's the {cipher_direction}d result: '{cipher_text}'")
+    print(f"Here's the {direction}d result: '{cipher_text}'")
 
 
 # Initialize play_again variable to True to allow the loop to run at least once
@@ -64,22 +64,22 @@ while play_again:
         cipher_direction = input("Invalid direction. Please type 'encode' or 'decode':\n")
 
     # Get the message from the user and convert it to lowercase
-    text = input("Type your message:\n").lower()
+    test_to_use = input("Type your message:\n").lower()
 
     # Get the shift number from the user
     # If the user inputs an invalid value (e.g. a non-integer), continue to prompt them until they provide a valid input
     while True:
         try:
-            shift = int(input("Type the shift number:\n"))
+            shift_amount = int(input("Type the shift number:\n"))
             break
         except ValueError:
             print("Invalid direction. Must to be a digit:\n")
 
     # Call the cipher function with the provided text, shift, and cipher direction
-    cipher(text, shift, cipher_direction)
+    cipher(text=test_to_use, shift=shift_amount, direction=cipher_direction)
 
     # Prompt the user to choose whether to run the program again
-    play_again = input("Type 'yes' if you want to go again. Otherwise type 'no'")
+    play_again = input("Type 'yes' if you want to go again. Otherwise type 'no'\n")
 
     # If the user inputs an invalid response, continue to prompt them until they provide a valid input
     while play_again != 'yes' and play_again != 'no':
